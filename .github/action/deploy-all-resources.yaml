@@ -1,0 +1,63 @@
+# This workflow uses the Azure login action to authenticate with Azure using the AZURE_CREDENTIALS secret, and then 
+# deploys each Bicep template using the azure/bicep-deploy action. The workflow can be triggered on a push to the 
+# main branch, and deploys the resources to the eastus region in the my-resource-group resource group. You can 
+# customize these values to fit your specific needs.
+
+name: Deploy azure resources similar to the ones in the guide. 
+on:
+  push:
+    branches:
+      - main
+
+env:
+  resourceGroupName: 'my-resource-group'
+  location: 'eastus'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy SQL elastic pool
+        uses: azure/bicep-deploy@v1.3.5
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          resourceGroupName: ${{ env.resourceGroupName }}
+          location: ${{ env.location }}
+          templateFilePath: '../../Bicepfiles/azure-sql-elastic-pool.bicep'
+          parameters: |
+            serverName: 'my-sql-server'
+            poolName: 'my-elastic-pool'
+            poolCapacity: 50
+            poolMaxSize: '100 GB'
+
+      - name: Deploy Storage Account
+        uses: azure/bicep-deploy@v1.3.5
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          resourceGroupName: ${{ env.resourceGroupName }}
+          location: ${{ env.location }}
+          templateFilePath: '../../Bicepfiles/azure-storage-account.bicep'
+          parameters: |
+            accountName: 'mystorageaccount'
+            containerName: 'mycontainer'
+
+      - name: Deploy App Service with Key Vault integration
+        uses: azure/bicep-deploy@v1.3.5
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          resourceGroupName: ${{ env.resourceGroupName }}
+          location: ${{ env.location }}
+          templateFilePath: '../../Bicepfiles/azure-app-service-with-keyvault.bicep'
+          parameters: |
+            appName: 'my-app-service'
+            appPlanName: 'my-app-service-plan'
+            keyVaultName: 'my-key-vault'
+            keyVaultSecretName: 'my-secret'
