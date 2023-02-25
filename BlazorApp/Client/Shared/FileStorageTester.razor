@@ -1,0 +1,23 @@
+﻿<h3>FileStorageTester</h3>
+
+<InputFile OnChange="@UploadFile" >Upload a file</InputFile>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Uploaded</th>
+            <th>Filename</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in FileList)
+        {
+            <tr>
+                <td>@file.Created.ToString()</td>
+                <td><a href="/files/@file.FileName" target="_blank">@file.FileName</a></td>
+                <td><button onclick="@(()=>Remove(file.FileName))">Delete</button></td>
+            </tr>
+        }
+    </tbody>
+</table>

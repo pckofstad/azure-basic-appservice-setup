@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp.Server", "Server\BlazorApp.Server.csproj", "{11EDF3FB-7744-4A13-9527-A5998647B862}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp.Server", "Server\BlazorApp.Server.csproj", "{11EDF3FB-7744-4A13-9527-A5998647B862}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp.Client", "Client\BlazorApp.Client.csproj", "{77B80140-7F1E-4D2D-AECD-48B0842EC00A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp.Client", "Client\BlazorApp.Client.csproj", "{77B80140-7F1E-4D2D-AECD-48B0842EC00A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp.Shared", "Shared\BlazorApp.Shared.csproj", "{D841519A-70F3-4ECF-9E23-91970D2A9DDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp.Shared", "Shared\BlazorApp.Shared.csproj", "{D841519A-70F3-4ECF-9E23-91970D2A9DDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp.Server.Configuration", "BlazorApp.Server.Configuration\BlazorApp.Server.Configuration.csproj", "{1CCE7E34-208F-42ED-841E-7183B655B9E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp.Server.Configuration", "BlazorApp.Server.Configuration\BlazorApp.Server.Configuration.csproj", "{1CCE7E34-208F-42ED-841E-7183B655B9E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp.Server.DbContext", "BlazorApp.Server.DbContext\BlazorApp.Server.DbContext.csproj", "{6DF9BA33-C34C-4F86-8AFC-4AFA1DC12A59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp.Server.Infrastructure", "BlazorApp.Server.Infrastructure\BlazorApp.Server.Infrastructure.csproj", "{89FE2B8F-BC13-45AD-B415-EF1196CE439D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{1CCE7E34-208F-42ED-841E-7183B655B9E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CCE7E34-208F-42ED-841E-7183B655B9E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CCE7E34-208F-42ED-841E-7183B655B9E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DF9BA33-C34C-4F86-8AFC-4AFA1DC12A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DF9BA33-C34C-4F86-8AFC-4AFA1DC12A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DF9BA33-C34C-4F86-8AFC-4AFA1DC12A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DF9BA33-C34C-4F86-8AFC-4AFA1DC12A59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89FE2B8F-BC13-45AD-B415-EF1196CE439D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89FE2B8F-BC13-45AD-B415-EF1196CE439D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89FE2B8F-BC13-45AD-B415-EF1196CE439D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89FE2B8F-BC13-45AD-B415-EF1196CE439D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

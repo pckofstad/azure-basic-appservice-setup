@@ -1,0 +1,65 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App 
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  ENVIROMENT_NAME: Development
+  APP_NAME: pckBlazorApp
+  DOCKER_API_TAG: pckBlazorApp
+  PUBLISH_PROFILE: ${{ secrets.PUBLISH_PROFILE_API_DEV }}
+  REGISTRY_URL: https://pck.azurecr.io/
+  REGISTRY_NAME: pck.azurecr.io/pckBlazorApp
+  REGISTRY_USERNAME: pck
+
+jobs:
+
+  build:
+    runs-on: "ubuntu-latest"
+    timeout-minutes: 15 
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY_URL }}
+          username: ${{ env.REGISTRY_USERNAME }}
+          password: ${{ secrets.PCK_REGISTRY_PASSWORD }}
+
+      - name: Build and push ${{ env.DOCKER_API_TAG }} container image to registry
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ env.REGISTRY_NAME }}/${{ env.DOCKER_API_TAG }}:${{ github.sha }}
+          file: ./Dissimilis.WebAPI/Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: build
+    environment:
+      name: "production"
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - id: deploy-to-webapp
+        name: Deploy ${{ env.DOCKER_API_TAG }} to ${{ env.ENVIROMENT_NAME }}
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: "${{ env.APP_NAME}}"
+          slot-name: "production"
+          publish-profile: ${{ env.PUBLISH_PROFILE }}
+          images: "${{ env.REGISTRY_NAME }}/${{ env.DOCKER_API_TAG }}:${{ github.sha }}"

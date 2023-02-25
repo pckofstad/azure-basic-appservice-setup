@@ -1,16 +1,10 @@
 using BlazorApp.Server.Configuration;
+using BlazorApp.Server.DbContext;
+using BlazorApp.Server.Infrastructure;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.ApplicationInsights.Extensibility.Implementation;
-using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.Extensions.Configuration;
-using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.ApplicationInsights.Extensibility.Implementation;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.AzureAppServices;
 
-namespace BlazorApp
+namespace BlazorApp.Server
 {
     public class Program
     {
@@ -45,9 +39,17 @@ namespace BlazorApp
                 builder.Services.AddApplicationInsightsTelemetry();
                 TelemetryDebugWriter.IsTracingDisabled = true;
             }
-            
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+
+            // DbContextSetup DbContext
+            DbContextSetup.ConfigureDatabase(builder.Services);
+
+
+            // Storage Account Setup
+            (new AzureStorageService(builder.Configuration)).EnsureStorageContainers();
+            builder.Services.AddTransient<AzureStorageService>();
 
             var app = builder.Build();
 

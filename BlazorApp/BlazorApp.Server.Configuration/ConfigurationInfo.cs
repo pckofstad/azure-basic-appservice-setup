@@ -12,6 +12,7 @@ namespace BlazorApp.Server.Configuration
         private enum RequiredValues
         {
             SQL_CONNECTION_STRING,
+            AzureWebJobsStorage
         }
 
         /// <summary>

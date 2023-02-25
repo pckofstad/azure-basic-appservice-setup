@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorApp.Server.Configuration\BlazorApp.Server.Configuration.csproj" />
+    <ProjectReference Include="..\BlazorApp.Server.DbContext\BlazorApp.Server.DbContext.csproj" />
+    <ProjectReference Include="..\BlazorApp.Server.Infrastructure\BlazorApp.Server.Infrastructure.csproj" />
     <ProjectReference Include="..\Client\BlazorApp.Client.csproj" />
     <ProjectReference Include="..\Shared\BlazorApp.Shared.csproj" />
   </ItemGroup>
