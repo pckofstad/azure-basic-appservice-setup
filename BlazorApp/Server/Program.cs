@@ -34,7 +34,6 @@ namespace BlazorApp.Server
             // Add telemetry if application insight key is set.
             if (!string.IsNullOrWhiteSpace(ConfigurationInfo.GetAPPINSIGHTS_INSTRUMENTATIONKEY()))
             {
-                builder.Services.AddSingleton<ITelemetryInitializer>();
                 // Application insight will read from the default configuration key that we already has defined as the same key in ConfigurationInfo
                 builder.Services.AddApplicationInsightsTelemetry();
                 TelemetryDebugWriter.IsTracingDisabled = true;
