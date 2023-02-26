@@ -109,6 +109,10 @@ We want to configure custom username and password for our database, this will pr
 9. When the resource is created, go into it. 
 10. Stop the app for now, you need to configure more before it is ready to run. 
 11. Select "Identity" under "Settings" in the left menu of the Web App you just created. Switch status for System assigned to "On". Press "Save". 
+12. Selett "Configuration" under "Settings" in the left menu. Click the tap "General settings".
+13. Change the settings "HTTP version" dropdown to 2.0. 
+14. Change the settings "Always on" to "On". 
+15. The reset of the default settings should be fine. Press "Save"
 
 ## 8. Create an Azure Key Vault
 1. Search and navigate to the "Key vaults" anc click "+ Click"
