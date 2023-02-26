@@ -44,7 +44,7 @@ jobs:
       - name: Build and push ${{ env.DOCKER_API_TAG }} container image to registry
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./BlazorApp
           push: true
           tags: ${{ env.REGISTRY_NAME }}/${{ env.DOCKER_API_TAG }}:${{ github.sha }}
           file: ./BlazorApp/Dockerfile
