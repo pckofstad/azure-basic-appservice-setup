@@ -9,14 +9,16 @@ namespace BlazorApp.Server.DbContext
         public static void ConfigureDatabase(IServiceCollection services)
         {
             var connectionString = ConfigurationInfo.GetSqlConnectionString();
+            var factory = new BlazorAppDbContextFactory(connectionString);
+            var context = factory.CreateDbContext();
+            context.Database.Migrate();
+            context.Database.CloseConnection();
+
             services.AddDbContext<BlazorAppDbContext>(options => options.UseSqlServer(connectionString, ob =>
             {
                 ob.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
                 ob.MaxBatchSize(1);
             }));
-
-            var factory = new BlazorAppDbContextFactory(connectionString);
-            factory.CreateDbContext().Database.Migrate();
 
         }
     }

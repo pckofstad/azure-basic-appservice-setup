@@ -27,7 +27,8 @@ We want to group all your collected resources in
 2. Select the Resource group that you just created. 
 3. Give the server name a descriptive name
 4. Location is recommended to be the same as where you are deploying your app to. 
-5. Authentication method select "Use only Azure Active Directory (Azure AD) authentication"
+5. Authentication method select "Use both SQL and Azure AD authentication"
+6. Create a server admin login and a password. We will not be using this, but make sure to keep a strong password anyway. 
 6. Set yourself as the admin for the databse. 
 7. Create the resource
 8. Ensure that the server is created before you move on. 
