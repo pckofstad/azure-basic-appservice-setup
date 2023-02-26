@@ -16,7 +16,7 @@ env:
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
   
   REGISTRY_URL: https://testigpckcr.azurecr.io/
-  REGISTRY_NAME: testigpckcr.azurecr.io/pckBlazorApp
+  REGISTRY_NAME: testigpckcr.azurecr.io/testigpckcr
   REGISTRY_USERNAME: testigpckcr
   
   ENVIROMENT_NAME: Development
