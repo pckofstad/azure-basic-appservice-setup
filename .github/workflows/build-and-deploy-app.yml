@@ -6,17 +6,20 @@ name: Build and deploy container app to Azure Web App
 on:
   push:
     branches:
-      - main
+      - dev
   workflow_dispatch:
 
-env:
+env:  
+  APP_NAME: testing-pck-blazorapp
+  DOCKER_API_TAG: testapp
+  PUBLISH_PROFILE: ${{ secrets.PUBLISH_PROFILE_TESTAPP }}
+  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  
+  REGISTRY_URL: https://testigpckcr.azurecr.io/
+  REGISTRY_NAME: testigpckcr.azurecr.io/testigpckcr
+  REGISTRY_USERNAME: testigpckcr
+  
   ENVIROMENT_NAME: Development
-  APP_NAME: pckBlazorApp
-  DOCKER_API_TAG: pckBlazorApp
-  PUBLISH_PROFILE: ${{ secrets.PUBLISH_PROFILE_API_DEV }}
-  REGISTRY_URL: https://pck.azurecr.io/
-  REGISTRY_NAME: pck.azurecr.io/pckBlazorApp
-  REGISTRY_USERNAME: pck
 
 jobs:
 
@@ -36,7 +39,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY_URL }}
           username: ${{ env.REGISTRY_USERNAME }}
-          password: ${{ secrets.PCK_REGISTRY_PASSWORD }}
+          password: ${{ env.REGISTRY_PASSWORD }}
 
       - name: Build and push ${{ env.DOCKER_API_TAG }} container image to registry
         uses: docker/build-push-action@v3
@@ -44,7 +47,7 @@ jobs:
           context: .
           push: true
           tags: ${{ env.REGISTRY_NAME }}/${{ env.DOCKER_API_TAG }}:${{ github.sha }}
-          file: ./Dissimilis.WebAPI/Dockerfile
+          file: ./BlazorApp/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
