@@ -163,7 +163,7 @@ We need a registry to keep our docker app in. We will use Azure registry
 I Recomend to have a CI/CD demo setup or an image ready to be pushed to this registry before you continue. 
 
 ## 12. Configure Azure App Service to use the correct container. 
-1. Click "Deployment Center" in the left menu. 
+1. Navigate to the App Service you just created. Click "Deployment Center" in the left menu. 
 2. Ensure the source is "Container Registry"
 3. Ensure container type is "single container"
 4. Registry should be set to "Azure Container Registry"
@@ -175,7 +175,7 @@ I Recomend to have a CI/CD demo setup or an image ready to be pushed to this reg
 10. The rest of the values can be default value. Press "Save"
 11. You are now ready to start the app. You do this in the "Overview" page in the left menu on the "Web app". You app should now be ready to test. 
 
-## 11. Create an Application Insights instance
+## 13. Create an Application Insights instance
 1. Search and navigate to your list of "Log Analytics workspaces" and click "+ Create"
 2. Select the Resource group as everything else.
 3. Give the workspace a suitable name. 
