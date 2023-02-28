@@ -86,7 +86,7 @@ We want to configure custom username and password for our database, this will pr
     ```
 
 ## 6. Create Azure Storage Account 
-1. Search and navigate to the "SQL elastic pools" anc click "+ Click"
+1. Search and navigate to the "Storage Accounts" anc click "+ Click"
 2. Select the Resource group that you just created. 
 3. Select a name for the storage account, names can be only lower-case letters, max 24 characters. 
 4. Location is recommended to be the same as where you are deploying your app to. 
