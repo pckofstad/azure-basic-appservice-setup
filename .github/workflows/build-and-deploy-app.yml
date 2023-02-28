@@ -10,14 +10,14 @@ on:
   workflow_dispatch:
 
 env:  
-  APP_NAME: testing-pck-blazorapp
+  APP_NAME: pck-ar
   DOCKER_API_TAG: testapp
   PUBLISH_PROFILE: ${{ secrets.PUBLISH_PROFILE_TESTAPP }}
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
   
-  REGISTRY_URL: https://testigpckcr.azurecr.io/
-  REGISTRY_NAME: testigpckcr.azurecr.io/testigpckcr
-  REGISTRY_USERNAME: testigpckcr
+  REGISTRY_URL: https://pckcr.azurecr.io/
+  REGISTRY_NAME: pckcr.azurecr.io/pckcr
+  REGISTRY_USERNAME: pckcr
   
   ENVIROMENT_NAME: Development
 
